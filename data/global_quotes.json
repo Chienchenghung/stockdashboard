@@ -1,0 +1,24 @@
+{
+  "updated": "2026-10-24T17:30:00+08:00",
+  "source": "snapshot",
+  "quotes": {
+    "2330.TW": { "price": 2385, "currency": "TWD", "pe": 24.47, "fpe": 16.81, "asof": "2026-10-22" },
+    "2454.TW": { "price": 4010, "currency": "TWD", "pe": 66.23, "fpe": 38.75, "asof": "2026-10-22" },
+    "2317.TW": { "price": 239.5, "currency": "TWD", "pe": 15.92, "fpe": 11.37, "asof": "2026-10-19" },
+    "2303.TW": { "price": 127, "currency": "TWD", "pe": 19.87, "fpe": 21.17, "asof": "2026-10-20" },
+    "3443.TW": { "price": 8360, "currency": "TWD", "pe": 214.92, "fpe": 102.85, "asof": "2026-10-08" },
+    "3661.TW": { "price": 3940, "currency": "TWD", "pe": 58.87, "fpe": 19.90, "asof": "2026-10-14" },
+    "2382.TW": { "price": 323, "currency": "TWD", "pe": 14.66, "fpe": 11.31, "asof": "2026-10-14" },
+    "3231.TW": { "price": 185.5, "currency": "TWD", "pe": 16.02, "fpe": 9.93, "asof": "2026-09-29" },
+    "6669.TW": { "price": 2085, "currency": "TWD", "pe": 21.29, "fpe": 13.87, "asof": "2026-10-02" },
+    "AVGO": { "price": 321.68, "currency": "USD", "pe": 41.06, "fpe": 18.52, "asof": "2026-10-23" },
+    "MRVL": { "price": 228.51, "currency": "USD", "pe": 76.78, "fpe": 40.44, "asof": "2026-10-23" },
+    "QCOM": { "price": 175.91, "currency": "USD", "pe": 20.47, "fpe": 18.98, "asof": "2026-10-23" },
+    "INTC": { "price": 86.96, "currency": "USD", "pe": null, "fpe": 50.64, "asof": "2026-10-23" },
+    "GFS": { "price": 44.39, "currency": "USD", "pe": 34.67, "fpe": 20.51, "asof": "2026-10-23" },
+    "SMCI": { "price": 32.94, "currency": "USD", "pe": 10.12, "fpe": 7.06, "asof": "2026-10-23" },
+    "DELL": { "price": 456.44, "currency": "USD", "pe": 26.63, "fpe": 16.22, "asof": "2026-10-23" },
+    "005930.KS": { "price": 224750, "currency": "KRW", "pe": 10.38, "fpe": 3.35, "asof": "2026-10-21" },
+    "0981.HK": { "price": 60.25, "currency": "HKD", "pe": 59.12, "fpe": 42.70, "asof": "2026-10-02" }
+  }
+}

@@ -1,0 +1,81 @@
+{
+  "_說明": "手動維護：成長主軸、比較同業、FactSet 預估 EPS、前景產品。建議每季法說會後更新一次。thesis 中用 **粗體** 標重點。peers 的 symbol 是 Yahoo Finance 代號；ref=true 的同業只當參考，不計入中位數。",
+  "2330": {
+    "name": "台積電",
+    "symbol": "2330.TW",
+    "seg": "晶圓代工",
+    "reviewed": "2026-10-24",
+    "thesis": "分析師關注的成長主軸是 **AI 晶片的先進製程與先進封裝**（2 奈米、CoWoS）。比較對象是爭奪先進與成熟製程訂單的晶圓代工對手。三星的評價主要反映記憶體景氣，英特爾的評價包含 CPU 本業，兩者只能粗略對照。",
+    "peers": [
+      { "code": "005930", "symbol": "005930.KS", "name": "三星電子", "tag": "含記憶體" },
+      { "code": "INTC", "symbol": "INTC", "name": "英特爾", "tag": "含 CPU" },
+      { "code": "GFS", "symbol": "GFS", "name": "格羅方德" },
+      { "code": "2303", "symbol": "2303.TW", "name": "聯電" },
+      { "code": "0981", "symbol": "0981.HK", "name": "中芯國際" }
+    ],
+    "eps": { "y26": 109.21, "y26lo": 98.4, "y26hi": 115.1, "y27": 145.69, "y27lo": 127, "y27hi": 167.13, "n": 42, "target": 3220, "date": "2026-10-15" },
+    "outlook": [
+      "2026 年美元營收預估成長約 44%，比 7 月上調後的目標更高；第四季預估再季增約 14%。",
+      "2 奈米 2025 年第四季量產，新竹與高雄持續擴廠，2027 年產能預估增加一倍以上。",
+      "AI 需求從聊天機器人延伸到 AI 助理與代理式 AI，管理層看長期前景正面。",
+      "A16（背面供電）規劃 2026 下半年量產，CoWoS 先進封裝產能持續擴充。",
+      "亞利桑那第二座廠預計 2027 年第三季量產，並在評估德州設廠。"
+    ],
+    "sources": [
+      ["法說會重點（中央社，2026/10/15）", "https://www.cna.com.tw/news/afe/202610150284.aspx"],
+      ["製程與封裝藍圖（關鍵評論網，2026/04）", "https://www.thenewslens.com/article/266574"],
+      ["FactSet EPS 調查（鉅亨網，2026/10/15）", "https://m.cnyes.com/news/id/6631541"]
+    ]
+  },
+  "2454": {
+    "name": "聯發科",
+    "symbol": "2454.TW",
+    "seg": "IC 設計",
+    "reviewed": "2026-10-24",
+    "thesis": "分析師關注的成長主軸是 **Google TPU 等 AI ASIC**：聯發科負責的 TPUv8t（代號 Zebrafish）已進入量產。比較對象是同樣爭取雲端 ASIC 訂單的博通、Marvell、創意、世芯。手機晶片仍是營收大宗，高通列為參考，不計入中位數。",
+    "peers": [
+      { "code": "AVGO", "symbol": "AVGO", "name": "博通" },
+      { "code": "MRVL", "symbol": "MRVL", "name": "Marvell" },
+      { "code": "3443", "symbol": "3443.TW", "name": "創意" },
+      { "code": "3661", "symbol": "3661.TW", "name": "世芯-KY" },
+      { "code": "QCOM", "symbol": "QCOM", "name": "高通", "tag": "參考", "ref": true }
+    ],
+    "eps": { "y26": 69.4, "y26lo": 60.43, "y26hi": 73.35, "y27": 141.42, "y27lo": 68.56, "y27hi": 185.78, "n": 27, "target": 5922, "date": "2026-10-20" },
+    "outlook": [
+      "Google TPUv8t（Zebrafish）採台積電 N3 製程與 CoWoS 封裝，2026 年量產；摩根大通估 2027 年出貨量可能超過博通同世代的 Sunfish。",
+      "摩根大通估 2027 年資料中心 ASIC 營收約 180 億美元，高於公司指引的 120–160 億美元；2026 年預估超過 20 億美元。",
+      "下半年推出 2 奈米旗艦手機晶片；智慧邊緣平台維持強勁，手機業務受零組件成本上升壓抑。",
+      "分析師預估 2027 年 EPS 約翻倍，但最低與最高預估相差近三倍，對 ASIC 放量速度看法分歧很大。"
+    ],
+    "sources": [
+      ["摩根大通 TPU 訂單看法（鏈新聞，2026/09/01）", "https://abmedia.io/google-tpu-mediatek-broadcom"],
+      ["法說會 ASIC 展望（CMoney，2026/05/19）", "https://www.cmoney.tw/notes/note-detail.aspx?nid=1195745"],
+      ["FactSet EPS 調查（鉅亨網，2026/10/20）", "https://news.cnyes.com/news/id/6633902"]
+    ]
+  },
+  "2317": {
+    "name": "鴻海",
+    "symbol": "2317.TW",
+    "seg": "電子代工・AI 伺服器",
+    "reviewed": "2026-10-24",
+    "thesis": "分析師關注的成長主軸是 **AI 伺服器機櫃**（輝達 GB 系列與 Vera Rubin）。比較對象是同樣出貨 AI 伺服器的廣達、緯創、緯穎、美超微和戴爾，不是消費電子代工同業。",
+    "peers": [
+      { "code": "2382", "symbol": "2382.TW", "name": "廣達" },
+      { "code": "3231", "symbol": "3231.TW", "name": "緯創" },
+      { "code": "6669", "symbol": "6669.TW", "name": "緯穎" },
+      { "code": "SMCI", "symbol": "SMCI", "name": "美超微" },
+      { "code": "DELL", "symbol": "DELL", "name": "戴爾" }
+    ],
+    "eps": { "y26": 17.92, "y26lo": 16.38, "y26hi": 20.32, "y27": 21.41, "y27lo": 19.73, "y27hi": 27.07, "n": 21, "target": 320, "date": "2026-08-12" },
+    "outlook": [
+      "AI 機櫃全年出貨目標為倍數以上成長，第三季預估高雙位數季增。",
+      "輝達 Vera Rubin 平台第四季起放量出貨，預計成為明年主力產品。",
+      "ASIC 伺服器市占目標維持 4 成以上。",
+      "高速網通：800G 以上交換器營收目標倍增，CPO 光交換器第三季量產。"
+    ],
+    "sources": [
+      ["法說會重點（鉅亨網，2026/08/12）", "https://news.cnyes.com/news/id/6573456"],
+      ["FactSet EPS 調查（鉅亨網，2026/08/12）", "https://m.cnyes.com/news/id/6574237"]
+    ]
+  }
+}
