@@ -77,5 +77,182 @@
       ["法說會重點（鉅亨網，2026/08/12）", "https://news.cnyes.com/news/id/6573456"],
       ["FactSet EPS 調查（鉅亨網，2026/08/12）", "https://m.cnyes.com/news/id/6574237"]
     ]
+  },
+  "2308": {
+    "name": "台達電",
+    "symbol": "2308.TW",
+    "seg": "電源・散熱",
+    "reviewed": "2026-10-24",
+    "thesis": "分析師關注的成長主軸是 **AI 資料中心電源升級（±400V／800V HVDC、Power Rack）與液冷散熱**。比較對象是同樣爭取 AI 機櫃供電的光寶科、Vertiv、Eaton，以及液冷主要對手奇鋐；雙鴻同屬液冷供應鏈，列為參考。",
+    "peers": [
+      { "code": "2301", "symbol": "2301.TW", "name": "光寶科" },
+      { "code": "VRT", "symbol": "VRT", "name": "Vertiv" },
+      { "code": "ETN", "symbol": "ETN", "name": "Eaton" },
+      { "code": "3017", "symbol": "3017.TW", "name": "奇鋐" },
+      { "code": "3324", "symbol": "3324.TWO", "name": "雙鴻", "tag": "參考", "ref": true }
+    ],
+    "eps": { "y26": 39.3, "y26lo": 32.21, "y26hi": 44.8, "y27": 59, "y27lo": 41.08, "y27hi": 80.91, "n": 23, "target": 2340, "date": "2026-05-02" },
+    "outlook": [
+      "±400V 與 800V HVDC 產品第三季量產、第四季小量出貨，公司預期 2027 年才會明顯放量。",
+      "短期以 400V 架構為主，800V 導入速度取決於輝達新平台與資料中心客戶的採用。",
+      "法人預期零組件缺料緩解、12KW／18KW 電源出貨增加，第四季營收與毛利率有機會再創新高。",
+      "液冷 CDU 需求優於預期；固態變壓器（SST）已有客戶導入，但大量出貨仍需時間。"
+    ],
+    "sources": [
+      ["法說會：HVDC 明年放量（壹蘋新聞網，2026/07/30）", "https://news.nextapple.com/finance/20260730/F61A1A329E9BFF26FF7D00B5B3988289"],
+      ["法人看第四季動能（旺得富理財網，2026/10/01）", "https://wantrich.chinatimes.com/news/20261001900208-420101"],
+      ["電源雙雄法說前瞻（工商時報，2026/10/20）", "https://www.ctee.com.tw/news/20261020700175-439901"],
+      ["FactSet EPS 調查（鉅亨網，2026/05/02）", "https://news.cnyes.com/news/id/6440141"]
+    ],
+    "changes": [
+      { "date": "2026-10-24", "text": "建立分析" }
+    ]
+  },
+  "2379": {
+    "name": "瑞昱",
+    "symbol": "2379.TW",
+    "seg": "IC 設計・網通晶片",
+    "reviewed": "2026-10-24",
+    "thesis": "分析師關注的成長主軸是 **網通規格升級（Wi-Fi 7、Multi-Gig 與車用乙太網路）並切入 AI 伺服器（SSD 控制器、100G 光通訊 PHY）**。比較對象是在 Wi-Fi、乙太網路與高速互連直接競爭的聯發科、博通、Marvell；慧榮（SSD 控制器）與聯詠（顯示晶片）只有部分產品重疊，列為參考。",
+    "peers": [
+      { "code": "2454", "symbol": "2454.TW", "name": "聯發科" },
+      { "code": "AVGO", "symbol": "AVGO", "name": "博通" },
+      { "code": "MRVL", "symbol": "MRVL", "name": "Marvell" },
+      { "code": "SIMO", "symbol": "SIMO", "name": "慧榮", "tag": "參考", "ref": true },
+      { "code": "3034", "symbol": "3034.TW", "name": "聯詠", "tag": "參考", "ref": true }
+    ],
+    "eps": { "y26": 31.73, "y26lo": 27.66, "y26hi": 37.49, "y27": 39.11, "y27lo": 29.15, "y27hi": 43.93, "n": 15, "target": 740, "date": "2026-10-08" },
+    "outlook": [
+      "公司預期 2026 年各應用領域營收都比去年成長，第三季營收已連兩季創單季新高。",
+      "100G 光通訊 PHY 預計 2027 年第一季量產，鎖定光收發模組與主動光纜。",
+      "SSD 控制器已經由模組廠打進 GPU AI 平台，伺服器產品先從控制晶片導入。",
+      "6 月起調漲報價，第三季開始反映，管理層預期毛利率逐步回升。",
+      "Wi-Fi 8 進行互通測試，PC 與路由器會先導入。"
+    ],
+    "sources": [
+      ["第二季法說會整理（方格子，2026/08/02）", "https://vocus.cc/article/6a6eb2fefd897800017f9f14"],
+      ["第三季營收創新高（工商時報，2026/10/11）", "https://www.ctee.com.tw/news/20261011700130-439903"],
+      ["FactSet EPS 調查（鉅亨網，2026/10/08）", "https://news.cnyes.com/news/id/6624695"]
+    ],
+    "changes": [
+      { "date": "2026-10-24", "text": "建立分析" }
+    ]
+  },
+  "2345": {
+    "name": "智邦",
+    "symbol": "2345.TW",
+    "seg": "網通設備",
+    "reviewed": "2026-10-24",
+    "thesis": "分析師關注的成長主軸是 **雲端業者 AI 資料中心的 800G／1.6T 交換器，以及新一代 AI 加速卡出貨**。比較對象是同樣搶超大型雲端業者交換器訂單的 Celestica、Arista 與明泰；思科是傳統品牌網通龍頭，列為參考。",
+    "peers": [
+      { "code": "CLS", "symbol": "CLS", "name": "Celestica" },
+      { "code": "ANET", "symbol": "ANET", "name": "Arista" },
+      { "code": "3380", "symbol": "3380.TW", "name": "明泰" },
+      { "code": "CSCO", "symbol": "CSCO", "name": "思科", "tag": "參考", "ref": true }
+    ],
+    "eps": { "y26": 86.43, "y26lo": 78.59, "y26hi": 90.52, "y27": 120.28, "y27lo": 86.97, "y27hi": 139.61, "n": 10, "target": 3500, "date": "2026-10-13" },
+    "outlook": [
+      "800G 交換器仍是主要出貨來源，第三季需求維持強勁。",
+      "1.6T 交換器 2026 下半年開始少量出貨，OCS 光交換器同步試產，法人預期 2027 年貢獻放大。",
+      "新一代 AI 加速卡第二季中量產、第三季全面出貨，營收比重快速提高。",
+      "法人提醒零組件漲價與加速卡比重上升，毛利率可能略低於上半年。"
+    ],
+    "sources": [
+      ["AI 動能與法人預估（旺得富理財網，2026/09/29）", "https://wantrich.chinatimes.com/news/20260929900187-420101"],
+      ["800G 撐盤、1.6T 接棒（旺得富理財網，2026/08/24）", "https://wantrich.chinatimes.com/news/20260824900255-420101"],
+      ["FactSet EPS 調查（鉅亨網，2026/10/13）", "https://news.cnyes.com/news/id/6629083"]
+    ],
+    "changes": [
+      { "date": "2026-10-24", "text": "建立分析" }
+    ]
+  },
+  "3711": {
+    "name": "日月光投控",
+    "symbol": "3711.TW",
+    "seg": "封裝測試",
+    "reviewed": "2026-10-24",
+    "thesis": "分析師關注的成長主軸是 **AI 先進封裝與測試（LEAP 業務，含 CoWoS 全製程）**，封裝產能吃緊也帶動漲價。比較對象是全球封測對手艾克爾、在 CoWoS 上既合作又競爭的台積電，以及搶 AI 測試訂單的京元電；力成以記憶體封測為主，列為參考。",
+    "peers": [
+      { "code": "AMKR", "symbol": "AMKR", "name": "艾克爾" },
+      { "code": "2330", "symbol": "2330.TW", "name": "台積電" },
+      { "code": "2449", "symbol": "2449.TW", "name": "京元電子" },
+      { "code": "6239", "symbol": "6239.TW", "name": "力成", "tag": "參考", "ref": true }
+    ],
+    "eps": { "y26": 18.98, "y26lo": 16.97, "y26hi": 20.36, "y27": 29.72, "y27lo": 24.26, "y27hi": 34.26, "n": 17, "target": 755, "date": "2026-10-13" },
+    "outlook": [
+      "廣發證券估 LEAP 營收 2026 年約 40 億美元、2027 年倍增至約 80 億美元，高於公司先前指引。",
+      "歐系外資把 2027 年 LEAP 營收預估上調至 82 億美元。",
+      "封裝產能吃緊從 AI GPU 擴散到成熟製程與類比晶片，下半年多項封裝報價預期上調。",
+      "LEAP 占封測營收比重預估從 2026 年約 23% 升至 2027 年約 32%。",
+      "第三季法說會預計 10 月 29 日舉行，市場關注 LEAP 指引與資本支出。"
+    ],
+    "sources": [
+      ["廣發證券看好先進封裝（科技新報，2026/10/21）", "https://finance.technews.tw/2026/10/21/we-are-optimistic-about-the-accelerated-growth-of-ase-technology-holdings-advanced-packaging-and-testing-business"],
+      ["外資上調 LEAP 預估（時報資訊，2026/10/21）", "https://www.chinatimes.com/realtimenews/20261021002770-260410"],
+      ["FactSet EPS 調查（鉅亨網，2026/10/13）", "https://news.cnyes.com/news/id/6629084"]
+    ],
+    "changes": [
+      { "date": "2026-10-24", "text": "建立分析" }
+    ]
+  },
+  "2383": {
+    "name": "台光電",
+    "symbol": "2383.TW",
+    "seg": "銅箔基板",
+    "reviewed": "2026-10-24",
+    "thesis": "分析師關注的成長主軸是 **AI 伺服器與交換器用的高階低損耗 CCL（M9 量產、M10 明年放量）**。比較對象是同樣搶 AI 高速 CCL 市場並擴充高階產能的台燿、聯茂與斗山；騰輝-KY 同屬 CCL 但不以 AI 高速材料為主，列為參考。",
+    "peers": [
+      { "code": "6274", "symbol": "6274.TWO", "name": "台燿" },
+      { "code": "6213", "symbol": "6213.TW", "name": "聯茂" },
+      { "code": "000150", "symbol": "000150.KS", "name": "斗山", "tag": "含集團" },
+      { "code": "6672", "symbol": "6672.TW", "name": "騰輝電子-KY", "tag": "參考", "ref": true }
+    ],
+    "eps": { "y26": 114.67, "y26lo": 99.35, "y26hi": 121.03, "y27": 216.47, "y27lo": 190.64, "y27hi": 267.52, "n": 19, "target": 7200, "date": "2026-08-12" },
+    "outlook": [
+      "AI 伺服器、一般伺服器與交換器合計的營收比重持續上升，預計 2026 下半年超過八成。",
+      "M9 等級材料已量產，M10 預計明年放量，M11 研發中。",
+      "台灣產能規劃到 2028 年增至約三倍，馬來西亞與中國同步擴產；美國設廠尚未定案。",
+      "董事長看高階 CCL 需求可延續到 2028 至 2030 年。"
+    ],
+    "sources": [
+      ["第二季法說會重點（富果，2026/08/27）", "https://blog.fugle.tw/post/earnings-call-2383-2026-08-27"],
+      ["董座談 M9／M10 與擴產（壹蘋新聞網，2026/10/20）", "https://news.nextapple.com/finance/20261020/578E862962DDE20B80B67F3BD294A882"],
+      ["高階 CCL 吃緊擴產（工商時報，2026/10/21）", "https://www.ctee.com.tw/news/20261021700074-439901"],
+      ["FactSet EPS 調查（鉅亨網，2026/08/12）", "https://news.cnyes.com/news/id/6574058"]
+    ],
+    "changes": [
+      { "date": "2026-10-24", "text": "建立分析" }
+    ]
+  },
+  "3037": {
+    "name": "欣興",
+    "symbol": "3037.TW",
+    "seg": "ABF 載板",
+    "reviewed": "2026-10-24",
+    "thesis": "分析師關注的成長主軸是 **AI GPU／ASIC 帶動的 ABF 載板供不應求**：漲價與光復廠新產能同時開出，推升 2027 年獲利。比較對象是全球 ABF 主要供應商 Ibiden、南電、景碩、三星電機與 AT&S；臻鼎-KY 只在光模組板與欣興競爭，列為參考。",
+    "peers": [
+      { "code": "4062", "symbol": "4062.T", "name": "Ibiden" },
+      { "code": "8046", "symbol": "8046.TW", "name": "南電" },
+      { "code": "3189", "symbol": "3189.TW", "name": "景碩" },
+      { "code": "009150", "symbol": "009150.KS", "name": "三星電機" },
+      { "code": "ATS", "symbol": "ATS.VI", "name": "AT&S" },
+      { "code": "4958", "symbol": "4958.TW", "name": "臻鼎-KY", "tag": "參考", "ref": true }
+    ],
+    "eps": { "y26": 21.18, "y26lo": 14.66, "y26hi": 24.84, "y27": 39.24, "y27lo": 29.27, "y27hi": 50.89, "n": 19, "target": 1262.5, "date": "2026-10-10" },
+    "outlook": [
+      "光復一廠第三期 2026 下半年量產，光復二廠預計 2027 年開出，後續還有楊梅廠區。",
+      "法人估 ABF 產能 2026 年增約四成、2027 年再增三到四成，漲價效益可望在後續幾季反映。",
+      "舊廠改造的光模組板產能預計第四季開出，供應 1.6T 光模組的 mSAP 製程。",
+      "泰國廠主攻伺服器 HDI，2027 年起可望明顯貢獻營收。",
+      "公司認為玻璃基板 2030 年前不太可能大規模量產。"
+    ],
+    "sources": [
+      ["法人看好 ABF 漲價與擴產（風傳媒，2026/10/20）", "https://www.storm.mg/article/11174022"],
+      ["法說會：光模組與泰國廠進度（壹蘋新聞網，2026/07/29）", "https://news.nextapple.com/finance/20260729/3AEA159C264F77642612066D317FC6D3"],
+      ["FactSet EPS 調查（鉅亨網，2026/10/10）", "https://news.cnyes.com/news/id/6627159"]
+    ],
+    "changes": [
+      { "date": "2026-10-24", "text": "建立分析" }
+    ]
   }
 }
