@@ -13,11 +13,10 @@
 | `index.html`、`app.js` | 頁面 | 手動 |
 | `data/tw_quotes.json` | 所有上市櫃股票的收盤價與本益比（證交所、櫃買中心 OpenAPI） | 自動，每個交易日 16:13 |
 | `data/global_quotes.json` | 分析公司與同業的價格、近四季與預估本益比（Yahoo Finance） | 自動，同上 |
-| `data/companies.json` | 成長主軸、比較同業、FactSet 預估 EPS、前景產品、來源 | Claude（GitHub Actions），每週六 08:47；也可手動修改 |
+| `data/companies.json` | 成長主軸、比較同業、FactSet 預估 EPS、前景產品、來源 | claude.ai 排程，每週六 08:47；也可手動修改 |
 | `data/etf.json` | ETF 前十大成分股權重 | 手動，建議每月 |
-| `data/news.json` | 今日市場與個股近期新聞 | Claude（GitHub Actions），週一到週五 17:12 |
-| `agent/*.md` | Claude 排程的工作說明（要改排程的做法就改這裡） | 手動 |
-| `.github/workflows/daily-news.yml`、`weekly-analyst-review.yml` | 用 Claude Code GitHub Action 執行上面兩份說明 | — |
+| `data/news.json` | 今日市場與個股近期新聞 | claude.ai 排程，週一到週五 17:12 |
+| `agent/*.md` | claude.ai 排程的工作說明（要改排程的做法就改這裡；GitHub 上不存放任何 Claude 金鑰） | 手動 |
 | `scripts/update_quotes.py` | 抓股價的腳本 | — |
 | `.github/workflows/update-quotes.yml` | 排程 | — |
 
@@ -26,8 +25,7 @@
 1. 把這個資料夾推到 GitHub 的 repo（GitHub Pages 免費方案需要 public repo）。
 2. **Settings → Pages**：Source 選 `Deploy from a branch`，Branch 選 `main`、資料夾 `/ (root)`。幾分鐘後網址會出現在同一頁。
 3. **Settings → Actions → General → Workflow permissions**：選 `Read and write permissions`，讓排程能把新股價提交回 repo。
-4. **Settings → Secrets and variables → Actions → New repository secret**：名稱 `CLAUDE_CODE_OAUTH_TOKEN`，值是在自己電腦執行 `claude setup-token` 產生的權杖（需要 Claude Pro、Max、Team 或 Enterprise 方案）。每日新聞與每週分析師重點兩個排程會用它。
-5. **Actions → 更新股價 → Run workflow** 手動跑一次，確認抓得到資料。之後就會每個交易日自動執行。
+4. **Actions → 更新股價 → Run workflow** 手動跑一次，確認抓得到資料。之後就會每個交易日自動執行。
 
 ## 本機預覽
 

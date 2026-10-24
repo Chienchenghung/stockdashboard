@@ -4,7 +4,10 @@
 
 ## 1. 準備
 
-這份說明在 GitHub Actions 裡執行，repo 已經 checkout 在工作目錄，不需要 clone，也不要自己執行 git 指令。提交與推送由 workflow 在你結束後處理，而且只會提交 `data/companies.json`，改其他檔案不會生效。
+這份說明由 claude.ai 的排程執行，每次都是全新的工作階段。
+
+1. 用 `add_repo` 加入 `Chienchenghung/stockdashboard`（access: push），clone 到工作目錄。
+2. 執行 `git pull --rebase origin main`，拿到股價排程的最新提交。
 
 ## 2. 逐家公司檢查
 
@@ -54,7 +57,9 @@
 - 年份換年後（例如到了 2027 年），`eps` 的 `y26`/`y27` 欄位語意不變。先不要自行改欄位名稱，在回報中提醒維護者需要調整頁面。
 - 不要新增公司或刪除公司，那由維護者決定。
 
-## 5. 檢查
+## 5. 檢查並提交
 
-1. 執行 `python3 -m json.tool data/companies.json`，確認格式正確，有錯就修到正確為止。workflow 會再驗證一次，格式錯誤會讓這次更新作廢。
-2. 最後用幾行文字回報這次做了什麼，回報會留在 Actions 的執行紀錄裡。
+1. 執行 `python3 -m json.tool data/companies.json` 確認格式正確，有錯就修到正確為止。
+2. 只提交 `data/companies.json`：`git add data/companies.json`，提交訊息用 `分析師重點週更新 YYYY-MM-DD`，結尾加上排程規定的 Co-Authored-By 行。其他檔案就算改了也不要提交。
+3. 執行 `git pull --rebase origin main`，再 `git push origin main`。推送失敗時重試一次，仍失敗就在回報裡寫明原因。
+4. 最後用幾行文字回報這次做了什麼。

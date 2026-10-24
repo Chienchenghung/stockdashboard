@@ -4,7 +4,10 @@
 
 ## 1. 準備
 
-這份說明在 GitHub Actions 裡執行，repo 已經 checkout 在工作目錄，不需要 clone，也不要自己執行 git 指令。提交與推送由 workflow 在你結束後處理，而且只會提交 `data/news.json`，改其他檔案不會生效。
+這份說明由 claude.ai 的排程執行，每次都是全新的工作階段。
+
+1. 用 `add_repo` 加入 `Chienchenghung/stockdashboard`（access: push），clone 到工作目錄。
+2. 執行 `git pull --rebase origin main`，拿到股價排程的最新提交。
 
 ## 2. 今日市場
 
@@ -68,7 +71,9 @@
 - 每則都要附原始連結。找不到可靠來源的消息不收。
 - 只寫報導裡有的事實，不加入自己的投資建議或預測。
 
-## 6. 檢查
+## 6. 檢查並提交
 
-1. 執行 `python3 -m json.tool data/news.json`，確認格式正確，有錯就修到正確為止。workflow 會再驗證一次，格式錯誤會讓這次更新作廢。
-2. 最後用幾行文字回報這次做了什麼，回報會留在 Actions 的執行紀錄裡。
+1. 執行 `python3 -m json.tool data/news.json` 確認格式正確，有錯就修到正確為止。
+2. 只提交 `data/news.json`：`git add data/news.json`，提交訊息用 `新聞更新 YYYY-MM-DD`，結尾加上排程規定的 Co-Authored-By 行。其他檔案就算改了也不要提交。
+3. 執行 `git pull --rebase origin main`，再 `git push origin main`。推送失敗時重試一次，仍失敗就在回報裡寫明原因。
+4. 最後用幾行文字回報這次做了什麼。
