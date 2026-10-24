@@ -8,6 +8,7 @@
 
 1. 用 `add_repo` 加入 `Chienchenghung/stockdashboard`（access: push），clone 到工作目錄。
 2. 執行 `git pull --rebase origin main`，拿到股價排程的最新提交。
+3. 讀 `data/companies.json` 和 `data/news.json`。先看過去 7 天標記 `"thesis": true` 的新聞，作為本週要查證的重點。
 
 ## 2. 逐家公司檢查
 

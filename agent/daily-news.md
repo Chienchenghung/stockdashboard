@@ -8,6 +8,7 @@
 
 1. 用 `add_repo` 加入 `Chienchenghung/stockdashboard`（access: push），clone 到工作目錄。
 2. 執行 `git pull --rebase origin main`，拿到股價排程的最新提交。
+3. 讀 `data/companies.json`（略過 `_說明`），取得要追蹤的公司代號、名稱與 `thesis`（成長主軸）。
 
 ## 2. 今日市場
 
