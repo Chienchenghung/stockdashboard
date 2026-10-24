@@ -2,11 +2,9 @@
 
 這份說明給 Claude 的「每日新聞」排程使用。每個交易日收盤後執行一次，整理當天台股大盤變化，以及 `data/companies.json` 裡每家公司的重要新聞，寫入 `data/news.json`。
 
-## 1. 準備 repo
+## 1. 準備
 
-1. 用 `add_repo` 加入 `Chienchenghung/stockdashboard`（access: push），clone 到工作目錄。
-2. `git pull --rebase origin main`，確保拿到股價排程的最新提交。
-3. 讀 `data/companies.json`（略過 `_說明`），取得要追蹤的公司代號、名稱與 `thesis`（成長主軸）。
+這份說明在 GitHub Actions 裡執行，repo 已經 checkout 在工作目錄，不需要 clone，也不要自己執行 git 指令。提交與推送由 workflow 在你結束後處理，而且只會提交 `data/news.json`，改其他檔案不會生效。
 
 ## 2. 今日市場
 
@@ -70,10 +68,7 @@
 - 每則都要附原始連結。找不到可靠來源的消息不收。
 - 只寫報導裡有的事實，不加入自己的投資建議或預測。
 
-## 6. 檢查並提交
+## 6. 檢查
 
-1. `python -m json.tool data/news.json` 確認格式正確。
-2. 用 `node -e` 讀一次，確認 `market.points` 是陣列，每則新聞都有 `date`、`title`、`url`。
-3. `git add data/news.json`，提交訊息用 `新聞更新 YYYY-MM-DD`，結尾加上排程規定的 Co-Authored-By 行。
-4. `git pull --rebase origin main`，再 `git push origin main`。推送失敗時重試一次，仍失敗就在回報裡寫明。
-5. 最後用三到五行回報：大盤摘要一句、各公司新增幾則、有沒有標記 `thesis` 的消息。
+1. 執行 `python3 -m json.tool data/news.json`，確認格式正確，有錯就修到正確為止。workflow 會再驗證一次，格式錯誤會讓這次更新作廢。
+2. 最後用幾行文字回報這次做了什麼，回報會留在 Actions 的執行紀錄裡。

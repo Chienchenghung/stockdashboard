@@ -2,10 +2,9 @@
 
 這份說明給 Claude 的「每週分析師重點」排程使用。每週六上午執行一次，檢查 `data/companies.json` 裡每家公司的分析師關注重點、預估 EPS、前景產品與比較同業是否需要更新。
 
-## 1. 準備 repo
+## 1. 準備
 
-1. 用 `add_repo` 加入 `Chienchenghung/stockdashboard`（access: push），clone 到工作目錄，`git pull --rebase origin main`。
-2. 讀 `data/companies.json` 和 `data/news.json`。先看過去 7 天標記 `"thesis": true` 的新聞，作為本週要查證的重點。
+這份說明在 GitHub Actions 裡執行，repo 已經 checkout 在工作目錄，不需要 clone，也不要自己執行 git 指令。提交與推送由 workflow 在你結束後處理，而且只會提交 `data/companies.json`，改其他檔案不會生效。
 
 ## 2. 逐家公司檢查
 
@@ -55,10 +54,7 @@
 - 年份換年後（例如到了 2027 年），`eps` 的 `y26`/`y27` 欄位語意不變。先不要自行改欄位名稱，在回報中提醒維護者需要調整頁面。
 - 不要新增公司或刪除公司，那由維護者決定。
 
-## 5. 檢查並提交
+## 5. 檢查
 
-1. `python -m json.tool data/companies.json` 確認格式正確。
-2. 用 `node -e` 讀一次，確認每家公司都有 `symbol`、`thesis`、`peers`（每個都有 `symbol`）、`eps.y26`、`eps.y27`、`outlook`。
-3. `git add data/companies.json`，提交訊息用 `分析師重點週更新 YYYY-MM-DD`，結尾加上排程規定的 Co-Authored-By 行。
-4. `git pull --rebase origin main`，再 `git push origin main`。推送失敗時重試一次，仍失敗就在回報裡寫明。
-5. 回報每家公司一行：哪些項目有更新，或「無變化」。
+1. 執行 `python3 -m json.tool data/companies.json`，確認格式正確，有錯就修到正確為止。workflow 會再驗證一次，格式錯誤會讓這次更新作廢。
+2. 最後用幾行文字回報這次做了什麼，回報會留在 Actions 的執行紀錄裡。

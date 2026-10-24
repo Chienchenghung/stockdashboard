@@ -10,7 +10,7 @@ permissions:
   contents: write
 
 concurrency:
-  group: update-quotes
+  group: data-writers
   cancel-in-progress: false
 
 jobs:
