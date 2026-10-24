@@ -1,6 +1,54 @@
 {
   "_說明": "由「每日新聞」排程自動維護，格式見 agent/daily-news.md。",
-  "updated": null,
-  "market": null,
-  "companies": {}
+  "updated": "2026-10-24T20:15:00+08:00",
+  "market": {
+    "date": "2026-10-24",
+    "headline": "今天是週六，台股休市；下一個交易日為 10 月 26 日（週一）。",
+    "points": [
+      "週五（10/23）美股因中東情勢推升油價、布蘭特原油一度逾每桶 115 美元而收低，道瓊跌約 1.2%、那斯達克跌約 0.2%，但費城半導體指數逆勢小漲約 0.4%，台積電 ADR 漲約 1.5%。"
+    ],
+    "sources": [
+      [
+        "CMoney：【美股盤勢】油價飆破百元，道瓊跌逾650點，半導體逆勢撐盤（2026-10-24）",
+        "https://cmnews.com.tw/article/cmoneyairesearcher-cb710e1a-cf35-11f1-8246-a5d47186924e"
+      ],
+      [
+        "FX168：美股三大指數10月23日收盤（2026-10-24）",
+        "https://www.fx168news.com/express/fastnews/1454507"
+      ]
+    ]
+  },
+  "companies": {
+    "2330": [
+      {
+        "date": "2026-10-22",
+        "title": "台積電研議廠務設備改用無稀土馬達",
+        "summary": "路透引述知情人士指出，台積電已向供應商詢問廠內自動化設備改用不含稀土的馬達，目的是降低中國稀土出口管制干擾產線的風險；相關討論仍在初期，尚未大規模導入，台積電未予評論。",
+        "impact": "neutral",
+        "source": "路透（Global Banking & Finance 轉載）",
+        "url": "https://www.globalbankingandfinance.com/exclusive-tsmc-seeks-factory-equipment-alternatives-thwart/"
+      }
+    ],
+    "2454": [
+      {
+        "date": "2026-10-22",
+        "title": "花旗上修聯發科EPS預估、維持目標價",
+        "summary": "花旗在 10/30 法說會前重申買進、目標價 6,800 元不變，但目標本益比由 35 倍降到 30 倍；同時把 2026 至 2028 年 EPS 預估分別上調 9%、25%、9%，並預期第四季營收季增約三成，理由與 AI ASIC 出貨放量有關。",
+        "impact": "positive",
+        "thesis": true,
+        "source": "聯合新聞網",
+        "url": "https://udn.com/news/story/7252/9832272"
+      }
+    ],
+    "2317": [
+      {
+        "date": "2026-10-23",
+        "title": "鴻海增資三家海外子公司約12億美元",
+        "summary": "鴻海 23 日公告增資新加坡、法國與捷克子公司合計約 12 億美元，其中法國 AI 子公司 5,800 萬美元、捷克廠 4,400 萬美元；公告用途為長期投資，媒體推測與擴充歐洲 AI 伺服器產能有關。",
+        "impact": "neutral",
+        "source": "世界日報",
+        "url": "https://www.worldjournal.com/wj/story/121347/9834406"
+      }
+    ]
+  }
 }
