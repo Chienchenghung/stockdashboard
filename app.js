@@ -17,10 +17,11 @@
   const SAMPLE = [{ t: '006208', s: 30000 }, { t: '2454', s: 2000 }, { t: '2330', s: 1000 }];
 
   // ---------- 載入資料 ----------
-  let TW, GL, CO, ETF;
+  let TW, GL, CO, ETF, NEWS = { market: null, companies: {} };
   try {
     const get = (f) => fetch(`data/${f}?v=${Date.now() / 3.6e6 | 0}`).then((r) => { if (!r.ok) throw new Error(f); return r.json(); });
     [TW, GL, CO, ETF] = await Promise.all(['tw_quotes.json', 'global_quotes.json', 'companies.json', 'etf.json'].map(get));
+    try { NEWS = await get('news.json'); } catch (e) { /* 新聞檔可有可無 */ }
   } catch (e) {
     $('cards').innerHTML = '<div class="panel"><b>資料載入失敗</b><p class="cap">請透過網址開啟這個頁面（例如 GitHub Pages），直接打開本機檔案時瀏覽器會擋下資料讀取。</p></div>';
     return;
@@ -31,6 +32,18 @@
   Object.values(ETF).forEach((e) => e.weights.forEach((w) => { etfName[w.code] = w.name; }));
   const nameOf = (c) => (TQ[c] && TQ[c].n) || (ETF[c] && ETF[c].name) || etfName[c] || (CO[c] && CO[c].name) || c;
   $('asof').textContent = `台股收盤 ${TW.date || ''}・${TW.source === 'snapshot' ? '初始快照' : '每日自動更新'}`;
+
+  // ---------- 今日市場 ----------
+  const IMP = { positive: '利多', negative: '利空', neutral: '中性' };
+  const link = ([t, u]) => `<a href="${esc(u)}" target="_blank" rel="noopener">${esc(t)}</a>`;
+  const mk = NEWS.market;
+  if (mk && mk.points && mk.points.length) {
+    $('market').hidden = false;
+    $('mk-date').textContent = `${mk.date || ''} 收盤整理`;
+    $('mk-head').textContent = mk.headline || '';
+    $('mk-points').innerHTML = mk.points.map((p) => `<li>${esc(p)}</li>`).join('');
+    $('mk-src').innerHTML = (mk.sources || []).length ? '來源：' + mk.sources.map(link).join('') : '';
+  }
 
   // ---------- 持股輸入 ----------
   const KEY = 'chigu-toushi-v2';
@@ -142,7 +155,7 @@
         <div><h3>${esc(d.name)}<span>${esc(c.code)}</span></h3><div class="seg">${esc(d.seg)}${relTxt ? '・' + relTxt : ''}</div></div>
         <div class="expo">你的曝險<br><b>${money(c.v)}</b> <span class="muted num">${pct(c.v / total)}</span></div>
       </div>
-      <div class="thesis">${bold(d.thesis)}</div>
+      <div class="thesis">${bold(d.thesis)}${(d.changes || []).length ? `<ul class="changes">${d.changes.slice(0, 3).map((x) => `<li><b>${esc(md(x.date))}</b>${esc(x.text)}</li>`).join('')}</ul>` : ''}</div>
       <div class="co-b">
         <section>
           <h4>關鍵數字</h4>
@@ -178,9 +191,19 @@
           <h4>前景產品與成長動能</h4>
           <ul class="out">${d.outlook.map((o) => `<li>${esc(o)}</li>`).join('')}</ul>
         </section>
+        ${newsBlock(c.code)}
       </div>
       <div class="src">來源：${d.sources.map(([t, u]) => `<a href="${esc(u)}" target="_blank" rel="noopener">${esc(t)}</a>`).join('')}<a href="${yf(d.symbol)}" target="_blank" rel="noopener">${esc(d.name)} 報價</a>${peers.map((p) => `<a href="${yf(p.symbol)}" target="_blank" rel="noopener">${esc(p.name)}</a>`).join('')}<span>分析更新：${esc(d.reviewed)}</span></div>
     </article>`;
+  }
+
+  function newsBlock(code) {
+    const items = ((NEWS.companies || {})[code] || []).slice(0, 5);
+    if (!items.length) return '';
+    return `<section><h4>近期新聞</h4><ul class="news">${items.map((n) => `
+      <li><span class="imp ${esc(n.impact || 'neutral')}">${IMP[n.impact] || '中性'}</span>
+        <div class="tt"><a href="${esc(n.url)}" target="_blank" rel="noopener">${esc(n.title)}</a></div>
+        <div class="sm"><span>${esc(md(n.date))}・${esc(n.source || '')}</span>${esc(n.summary || '')}</div></li>`).join('')}</ul></section>`;
   }
 
   renderRows();

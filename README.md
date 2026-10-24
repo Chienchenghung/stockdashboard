@@ -13,8 +13,10 @@
 | `index.html`、`app.js` | 頁面 | 手動 |
 | `data/tw_quotes.json` | 所有上市櫃股票的收盤價與本益比（證交所、櫃買中心 OpenAPI） | 自動，每個交易日 16:13 |
 | `data/global_quotes.json` | 分析公司與同業的價格、近四季與預估本益比（Yahoo Finance） | 自動，同上 |
-| `data/companies.json` | 成長主軸、比較同業、FactSet 預估 EPS、前景產品、來源 | 手動，建議每季法說會後 |
+| `data/companies.json` | 成長主軸、比較同業、FactSet 預估 EPS、前景產品、來源 | Claude 排程，每週六上午；也可手動修改 |
 | `data/etf.json` | ETF 前十大成分股權重 | 手動，建議每月 |
+| `data/news.json` | 今日市場與個股近期新聞 | Claude 排程，每個交易日 17:12 |
+| `agent/*.md` | Claude 排程的工作說明（要改排程的做法就改這裡） | 手動 |
 | `scripts/update_quotes.py` | 抓股價的腳本 | — |
 | `.github/workflows/update-quotes.yml` | 排程 | — |
 
