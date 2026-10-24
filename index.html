@@ -1,3 +1,5 @@
+<!doctype html>
+<meta charset="utf-8">
 <title>持股透視</title>
 <meta name="claude:viewport-fit-sides" content="cover">
 <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -204,4 +206,8 @@ footer{font-size:12.5px;color:var(--muted);border-top:1px solid var(--line);padd
   </footer>
 </div>
 
-<script src="app.js"></script>
+<script>
+  // app.js 改版時請一併更新 ?v=，避免瀏覽器用舊的快取檔搭配新資料而卡在「載入中」
+  window.addEventListener('error', function () { var t = document.getElementById('asof'); if (t && t.textContent === '載入中') t.textContent = '載入失敗，請按 Ctrl+F5 重新整理'; });
+</script>
+<script src="app.js?v=20261024"></script>
