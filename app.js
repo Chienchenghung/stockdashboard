@@ -17,11 +17,12 @@
   const SAMPLE = [{ t: '006208', s: 30000 }, { t: '2454', s: 2000 }, { t: '2330', s: 1000 }];
 
   // ---------- 載入資料 ----------
-  let TW, GL, CO, ETF, NEWS = { market: null, companies: {} };
+  let TW, GL, CO, ETF, NEWS = { market: null, companies: {} }, COV = { order: [] };
   try {
     const get = (f) => fetch(`data/${f}?v=${Date.now() / 3.6e6 | 0}`).then((r) => { if (!r.ok) throw new Error(f); return r.json(); });
     [TW, GL, CO, ETF] = await Promise.all(['tw_quotes.json', 'global_quotes.json', 'companies.json', 'etf.json'].map(get));
     try { NEWS = await get('news.json'); } catch (e) { /* 新聞檔可有可無 */ }
+    try { COV = await get('coverage.json'); } catch (e) { /* 可有可無 */ }
   } catch (e) {
     $('cards').innerHTML = '<div class="panel"><b>資料載入失敗</b><p class="cap">請透過網址開啟這個頁面（例如 GitHub Pages），直接打開本機檔案時瀏覽器會擋下資料讀取。</p></div>';
     return;
@@ -29,7 +30,8 @@
   const TQ = TW.quotes, GQ = GL.quotes;
   delete CO._說明; delete ETF._說明;
   const etfName = {};
-  Object.values(ETF).forEach((e) => e.weights.forEach((w) => { etfName[w.code] = w.name; }));
+  Object.values(ETF).forEach((e) => (e.weights || []).forEach((w) => { etfName[w.code] = w.name; }));
+  const isEtf = (c) => !!ETF[c] || /^00\d{3,4}[A-Z]?$/.test(c);
   const nameOf = (c) => (TQ[c] && TQ[c].n) || (ETF[c] && ETF[c].name) || etfName[c] || (CO[c] && CO[c].name) || c;
   $('asof').textContent = `台股收盤 ${TW.date || ''}・${TW.source === 'snapshot' ? '初始快照' : '每日自動更新'}`;
 
@@ -95,11 +97,14 @@
     const m = new Map(), add = (k, name, v, other) => { const c = m.get(k) || { code: k, name, v: 0, other }; c.v += v; m.set(k, c); };
     pos.forEach((x) => {
       const e = ETF[x.t];
-      if (e) {
+      const ws = e && (e.weights || (e.proxy && ETF[e.proxy] && ETF[e.proxy].weights));
+      if (ws) {
+        const lev = (e && e.leverage) || 1;
         let used = 0;
-        e.weights.forEach(({ code, w }) => { add(code, nameOf(code), x.mv * w); used += w; });
-        add(x.t + '-other', `${nameOf(x.t)} 其他成分股`, x.mv * (1 - used), true);
-      } else add(x.t, nameOf(x.t), x.mv);
+        ws.forEach(({ code, w }) => { add(code, nameOf(code), x.mv * w * lev); used += w; });
+        add(x.t + '-other', `${nameOf(x.t)} 其他成分股`, x.mv * (1 - used) * lev, true);
+      } else if (isEtf(x.t)) add(x.t, `${nameOf(x.t)}（ETF，尚未拆解）`, x.mv, true);
+      else add(x.t, nameOf(x.t), x.mv);
     });
     return [...m.values()].sort((a, b) => b.v - a.v);
   }
@@ -122,18 +127,24 @@
         <div class="n" title="${esc(c.name)}">${esc(c.name)}${c.code && !c.other ? `<small>${esc(c.code)}</small>` : ''}</div>
         <div class="t"><div class="f" style="width:${(c.share / max * 100).toFixed(2)}%"></div><div class="lim" style="left:${(LIMIT / max * 100).toFixed(2)}%"></div></div>
         <div class="p">${pct(c.share)}</div></div>`).join('') : '<p class="cap">填入至少一檔持股，就會在這裡看到曝險分布。</p>';
-    const etfs = pos.filter((x) => ETF[x.t]).map((x) => ETF[x.t]);
-    $('etf-note').innerHTML = etfs.length ? etfs.map((e) => `${esc(e.name)} 權重資料日 ${esc(e.asof)}，只拆前十大成分股，其餘歸入「其他」。<a href="${esc(e.source)}" target="_blank" rel="noopener">成分股來源</a>`).join('<br>') : '';
+    const etfs = [...new Set(pos.filter((x) => ETF[x.t]).map((x) => x.t))].map((c) => ETF[c]);
+    const lev = etfs.some((e) => e.leverage);
+    $('etf-note').innerHTML = etfs.length ? etfs.map((e) => e.leverage
+      ? `${esc(e.name)} 為 ${e.leverage} 倍槓桿：${esc(e.note || '')}。`
+      : `${esc(e.name)} 權重資料日 ${esc(e.asof)}，只拆前十大成分股，其餘歸入「其他」。<a href="${esc(e.source)}" target="_blank" rel="noopener">來源</a>`).join('<br>')
+      + (lev ? '<br>因為含槓桿，各公司曝險加總會超過 100%。' : '') : '';
 
-    const deep = cos.filter((c) => CO[c.code] && GQ[CO[c.code].symbol]);
-    const miss = cos.filter((c) => !deep.includes(c));
-    $('cards').innerHTML = deep.map((c) => card(c, total)).join('') + (miss.length ? `
-      <div class="panel missing"><b>這些公司還沒有估值分析</b><p class="cap" style="margin:2px 0 0">分析內容由維護者整理，新增公司請更新 data/companies.json。</p>
+    const shown2 = cos.filter((c) => CO[c.code] || (TQ[c.code] && c.v / total >= 0.01));
+    const miss = cos.filter((c) => !shown2.includes(c));
+    $('cards').innerHTML = shown2.map((c) => CO[c.code] ? card(c, total) : basicCard(c, total)).join('') + (miss.length ? `
+      <div class="panel missing"><b>曝險較小的公司</b><p class="cap" style="margin:2px 0 0">占比低於 1%，這裡只列名稱。</p>
       <div class="chips">${miss.map((c) => `<span class="chip">${esc(c.name)} <span class="num muted">${pct(c.v / total)}</span></span>`).join('')}</div></div>` : '');
   }
 
   function card(c, total) {
-    const d = CO[c.code], q = GQ[d.symbol], e = d.eps;
+    const d = CO[c.code], t = TQ[c.code] || {}, e = d.eps || {};
+    const q = GQ[d.symbol] || { price: t.p, pe: t.pe, fpe: null, asof: TW.date };
+    const hasEps = e.y26 > 0 && e.y27 > 0;
     const peers = d.peers.map((p) => ({ ...p, ...(GQ[p.symbol] || {}) })).filter((p) => p.fpe > 0);
     const core = peers.filter((p) => !p.ref);
     const med = core.length ? median(core.map((p) => p.fpe)) : null;
@@ -148,7 +159,7 @@
       return `<div class="sc"><div class="t">${title}</div><div class="r">${price(v)}<em class="${r >= 0 ? 'up' : 'dn'}">${spct(r)}</em></div><div class="how">${how}</div></div>`;
     };
     const relTxt = rel == null ? '' : Math.abs(rel) < 0.05 ? '預估本益比和主軸同業相近' : rel > 0 ? `預估本益比比主軸同業貴 ${pct(rel)}` : `預估本益比比主軸同業便宜 ${pct(-rel)}`;
-    const stale = (Date.now() - new Date(e.date).getTime()) / 864e5 > 60;
+    const stale = hasEps && (Date.now() - new Date(e.date).getTime()) / 864e5 > 60;
     const yf = (s) => `https://finance.yahoo.com/quote/${encodeURIComponent(s)}`;
     return `<article class="co" id="co-${esc(c.code)}">
       <div class="co-h">
@@ -164,10 +175,10 @@
             <div class="stat"><div class="l">預估本益比</div><div class="v">${x1(q.fpe)}</div><div class="d">未來一年</div></div>
             <div class="stat"><div class="l">主軸同業中位數</div><div class="v">${x1(med)}</div><div class="d">預估本益比，${core.length} 家</div></div>
             <div class="stat"><div class="l">近四季本益比</div><div class="v">${x1(q.pe)}</div><div class="d">已實現獲利</div></div>
-            <div class="stat"><div class="l">2026 預估 EPS</div><div class="v">${n2(e.y26)}</div><div class="d">FactSet 中位數</div></div>
-            <div class="stat"><div class="l">2027 預估 EPS</div><div class="v">${n2(e.y27)}</div><div class="d">年增 <span class="${e.y27 >= e.y26 ? 'up' : 'dn'}">${spct(e.y27 / e.y26 - 1)}</span></div></div>
+            <div class="stat"><div class="l">2026 預估 EPS</div><div class="v">${hasEps ? n2(e.y26) : '—'}</div><div class="d">FactSet 中位數</div></div>
+            <div class="stat"><div class="l">2027 預估 EPS</div><div class="v">${hasEps ? n2(e.y27) : '—'}</div><div class="d">${hasEps ? `年增 <span class="${e.y27 >= e.y26 ? 'up' : 'dn'}">${spct(e.y27 / e.y26 - 1)}</span>` : '尚無調查'}</div></div>
           </div>
-          <p class="eps-range">FactSet ${e.n} 位分析師（${esc(e.date)}）。2026 區間 ${n2(e.y26lo)}–${n2(e.y26hi)}，2027 區間 ${n2(e.y27lo)}–${n2(e.y27hi)}。${stale ? '<span class="flag bad">預估已超過兩個月，可能已更新</span>' : ''}</p>
+          <p class="eps-range">${hasEps ? `FactSet ${e.n || '—'} 位分析師（${esc(e.date)}）。2026 區間 ${n2(e.y26lo)}–${n2(e.y26hi)}，2027 區間 ${n2(e.y27lo)}–${n2(e.y27hi)}。` : '目前找不到 FactSet 的分析師 EPS 調查。'}${stale ? '<span class="flag bad">預估已超過兩個月，可能已更新</span>' : ''}</p>
         </section>
         <section>
           <h4>預估本益比 vs 主軸同業</h4>
@@ -183,8 +194,8 @@
           <h4>可能的價格區間（機械估算）</h4>
           <div class="scen">
             ${sc('以主軸同業評價計', med && fwdEps ? med * fwdEps : null, `主軸同業預估本益比中位數 ${x1(med)} × 市場預估未來一年 EPS ${fwdEps ? n2(fwdEps) : '—'}`)}
-            ${sc('本益比不變，EPS 達 2027 預估', q.pe ? q.pe * e.y27 : null, `近四季本益比 ${x1(q.pe)} × 2027 預估 EPS ${n2(e.y27)}`)}
-            ${sc('分析師目標價中位數', e.target, `FactSet 調查（${esc(e.date)}）`)}
+            ${sc('本益比不變，EPS 達 2027 預估', q.pe && hasEps ? q.pe * e.y27 : null, `近四季本益比 ${x1(q.pe)} × 2027 預估 EPS ${n2(e.y27)}`)}
+            ${sc('分析師目標價中位數', hasEps ? e.target : null, `FactSet 調查（${esc(e.date)}）`)}
           </div>
         </section>
         <section>
@@ -194,6 +205,18 @@
         ${newsBlock(c.code)}
       </div>
       <div class="src">來源：${d.sources.map(([t, u]) => `<a href="${esc(u)}" target="_blank" rel="noopener">${esc(t)}</a>`).join('')}<a href="${yf(d.symbol)}" target="_blank" rel="noopener">${esc(d.name)} 報價</a>${peers.map((p) => `<a href="${yf(p.symbol)}" target="_blank" rel="noopener">${esc(p.name)}</a>`).join('')}<span>分析更新：${esc(d.reviewed)}</span></div>
+    </article>`;
+  }
+
+  function basicCard(c, total) {
+    const t = TQ[c.code];
+    return `<article class="co" id="co-${esc(c.code)}">
+      <div class="co-h">
+        <div><h3>${esc(c.name)}<span>${esc(c.code)}</span></h3><div class="seg">股價 ${price(t.p)}・近四季本益比 ${x1(t.pe)}・${esc(md(TW.date))} 收盤</div></div>
+        <div class="expo">你的曝險<br><b>${money(c.v)}</b> <span class="muted num">${pct(c.v / total)}</span></div>
+      </div>
+      <div class="thesis">這家公司的分析師重點、同業比較與預估 EPS 還沒建立。${(COV.order || []).includes(c.code) ? '已在分析清單中，每週六會陸續補上。' : '目前不在分析清單中。'}</div>
+      ${newsBlock(c.code) ? `<div class="co-b">${newsBlock(c.code)}</div>` : ''}
     </article>`;
   }
 

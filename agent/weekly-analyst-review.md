@@ -1,6 +1,6 @@
 # 每週分析師重點排程：工作說明
 
-這份說明給 Claude 的「每週分析師重點」排程使用。每週六上午執行一次，檢查 `data/companies.json` 裡每家公司的分析師關注重點、預估 EPS、前景產品與比較同業是否需要更新。
+這份說明給 Claude 的「每週分析師重點」排程使用。每週六上午執行一次，為 `data/coverage.json` 清單中還沒有分析的公司建立分析，並檢查 `data/companies.json` 裡已有的公司，看分析師關注重點、預估 EPS、前景產品與比較同業是否需要更新。
 
 ## 1. 準備
 
@@ -8,11 +8,23 @@
 
 1. 用 `add_repo` 加入 `Chienchenghung/stockdashboard`（access: push），clone 到工作目錄。
 2. 執行 `git pull --rebase origin main`，拿到股價排程的最新提交。
-3. 讀 `data/companies.json` 和 `data/news.json`。先看過去 7 天標記 `"thesis": true` 的新聞，作為本週要查證的重點。
+3. 讀 `data/coverage.json`、`data/companies.json` 和 `data/news.json`。先看過去 7 天標記 `"thesis": true` 的新聞，作為本週要查證的重點。
 
-## 2. 逐家公司檢查
+## 2. 建立新公司的分析
 
-對每家公司依序查證以下五項，每項都要有本週可查到、有日期的來源。
+比對 `coverage.json` 的 `order` 和 `companies.json` 的鍵，依 `order` 的順序，挑出最多 **6 家**還沒有分析的公司，為每家建立一筆完整資料。格式和現有公司相同：
+
+- `name`、`symbol`（Yahoo Finance 代號：上市 `.TW`，上櫃 `.TWO`）、`seg`（產業，例如「網通設備」）。
+- `thesis`、`peers`、`eps`、`outlook`、`sources`：依下一節 a 到 e 的規則查證後填寫。
+- `reviewed`：今天的日期。`changes`：`[{"date": "今天", "text": "建立分析"}]`。
+- 找不到 FactSet 調查時，`eps` 設成 `null`，頁面會顯示「尚無調查」，不要用其他來源的數字湊。
+- 新公司的同業估值資料，會在下一個交易日的股價排程自動抓取，不用自己處理。
+
+建完新公司後，剩下的時間用來做第 3 節。
+
+## 3. 逐家公司檢查
+
+已有分析的公司，先處理過去 7 天有 `"thesis": true` 新聞的公司，再處理 `reviewed` 日期最舊的。每次最多檢查 10 家，其餘留到下週。每項都要有可查到、有日期的來源。
 
 ### a. 預估 EPS（`eps`）
 
@@ -45,20 +57,20 @@
 - `sources` 換成實際用到的 2 到 4 個來源，格式 `["內容（媒體，YYYY/MM/DD）", "網址"]`。
 - `reviewed` 改成今天的日期。
 
-## 3. 記錄本週變化（`changes`）
+## 4. 記錄本週變化（`changes`）
 
 - 只要上面任何一項有實質變化，就在該公司的 `changes` 陣列最前面加一筆 `{"date": "YYYY-MM-DD", "text": "一句話說明改了什麼、為什麼"}`。例如：「FactSet 2027 EPS 中位數由 141.4 上修至 150.2 元」。
 - 保留最近 4 筆。
 - 沒有變化就不加，但仍更新 `reviewed`。
 
-## 4. 規則
+## 5. 規則
 
 - 所有內容用自己的話改寫，直接引用最多一處且少於 15 字。
 - 只寫來源裡有的事實，不加入自己的買賣建議。
 - 年份換年後（例如到了 2027 年），`eps` 的 `y26`/`y27` 欄位語意不變。先不要自行改欄位名稱，在回報中提醒維護者需要調整頁面。
-- 不要新增公司或刪除公司，那由維護者決定。
+- 只新增 `coverage.json` 清單裡的公司，不要刪除任何公司；清單由維護者決定。
 
-## 5. 檢查並提交
+## 6. 檢查並提交
 
 1. 執行 `python3 -m json.tool data/companies.json` 確認格式正確，有錯就修到正確為止。
 2. 只提交 `data/companies.json`：`git add data/companies.json`，提交訊息用 `分析師重點週更新 YYYY-MM-DD`，結尾加上排程規定的 Co-Authored-By 行。其他檔案就算改了也不要提交。
