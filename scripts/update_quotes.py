@@ -10,6 +10,7 @@
 from __future__ import annotations
 
 import json
+import re
 import sys
 from datetime import date, datetime, timedelta, timezone
 from pathlib import Path
@@ -149,6 +150,9 @@ def update_tw() -> bool:
         except Exception as e:  # noqa: BLE001
             note(key, False, error=str(e))
             print(f"[tw] {key} 失敗: {e}", file=sys.stderr)
+
+    # 只保留股票（4 碼）與 ETF（00 開頭），排除權證、債券等，讓檔案維持在 100KB 左右
+    quotes = {c: v for c, v in quotes.items() if re.fullmatch(r"\d{4}|00\d{3,4}[A-Z]?", c)}
 
     if len(quotes) < 500:
         print(f"[tw] 只拿到 {len(quotes)} 檔，視為失敗，保留舊資料", file=sys.stderr)
