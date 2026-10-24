@@ -24,6 +24,13 @@ TWSE_DAY = "https://openapi.twse.com.tw/v1/exchangeReport/STOCK_DAY_ALL"
 TWSE_PE = "https://openapi.twse.com.tw/v1/exchangeReport/BWIBBU_ALL"
 TPEX_DAY = "https://www.tpex.org.tw/openapi/v1/tpex_mainboard_daily_close_quotes"
 TPEX_PE = "https://www.tpex.org.tw/openapi/v1/tpex_mainboard_peratio_analysis"
+TPEX_OLD = "https://www.tpex.org.tw/web/stock/aftertrading/otc_quotes_no1430/stk_wn1430_result.php?l=zh-tw&se=EW&o=json"
+
+STATUS: dict[str, dict] = {}
+
+
+def note(key: str, ok: bool, count: int = 0, error: str | None = None) -> None:
+    STATUS[key] = {"ok": ok, "count": count, **({"error": error[:300]} if error else {})}
 
 
 def now_iso() -> str:
@@ -58,12 +65,20 @@ def roc_date(s) -> str | None:
     return None
 
 
-def fetch(url: str) -> list[dict]:
+def fetch_raw(url: str):
     r = requests.get(url, headers=HEADERS, timeout=40)
-    r.raise_for_status()
-    data = r.json()
+    if r.status_code != 200:
+        raise ValueError(f"HTTP {r.status_code}: {r.text[:120]!r}")
+    try:
+        return r.json()
+    except ValueError:
+        raise ValueError(f"不是 JSON（{r.headers.get('content-type')}）: {r.text[:120]!r}") from None
+
+
+def fetch(url: str) -> list[dict]:
+    data = fetch_raw(url)
     if not isinstance(data, list):
-        raise ValueError(f"{url} 回傳格式不是列表")
+        raise ValueError(f"回傳格式不是列表: {str(data)[:120]}")
     return data
 
 
@@ -82,32 +97,58 @@ def update_tw() -> bool:
     quotes: dict[str, dict] = {}
     dates: list[str] = []
 
-    for url, code_k, name_k, close_k in (
-        (TWSE_DAY, ("Code",), ("Name",), ("ClosingPrice",)),
-        (TPEX_DAY, ("SecuritiesCompanyCode", "Code"), ("CompanyName", "Name"), ("Close", "ClosingPrice")),
+    for key, url, code_k, name_k, close_k in (
+        ("twse_day", TWSE_DAY, ("Code",), ("Name",), ("ClosingPrice",)),
+        ("tpex_day", TPEX_DAY, ("SecuritiesCompanyCode", "Code"), ("CompanyName", "Name"), ("Close", "ClosingPrice")),
     ):
         try:
+            n = 0
             for row in fetch(url):
                 code, close = pick(row, *code_k), num(pick(row, *close_k))
                 if code and close:
                     quotes[str(code).strip()] = {"n": str(pick(row, *name_k) or code).strip(), "p": close}
+                    n += 1
                 d = roc_date(pick(row, "Date"))
                 if d:
                     dates.append(d)
+            note(key, n > 0, n, None if n else "沒有可用的列")
         except Exception as e:  # noqa: BLE001
-            print(f"[tw] 收盤價抓取失敗 {url}: {e}", file=sys.stderr)
+            note(key, False, error=str(e))
+            print(f"[tw] {key} 失敗: {e}", file=sys.stderr)
 
-    for url, code_k, pe_k in (
-        (TWSE_PE, ("Code",), ("PEratio", "PERatio")),
-        (TPEX_PE, ("SecuritiesCompanyCode", "Code"), ("PriceEarningRatio", "PEratio")),
+    # 櫃買中心新版 OpenAPI 失敗時，改用舊版每日收盤行情
+    if not STATUS.get("tpex_day", {}).get("ok"):
+        try:
+            data = fetch_raw(TPEX_OLD)
+            rows = data.get("aaData") or data.get("tables", [{}])[0].get("data") or []
+            n = 0
+            for row in rows:
+                if len(row) > 2 and num(row[2]):
+                    quotes[str(row[0]).strip()] = {"n": str(row[1]).strip(), "p": num(row[2])}
+                    n += 1
+            d = roc_date(data.get("reportDate") or data.get("date"))
+            if d:
+                dates.append(d)
+            note("tpex_day_fallback", n > 0, n, None if n else f"沒有可用的列，鍵值: {list(data)[:8]}")
+        except Exception as e:  # noqa: BLE001
+            note("tpex_day_fallback", False, error=str(e))
+            print(f"[tw] tpex 備援失敗: {e}", file=sys.stderr)
+
+    for key, url, code_k, pe_k in (
+        ("twse_pe", TWSE_PE, ("Code",), ("PEratio", "PERatio")),
+        ("tpex_pe", TPEX_PE, ("SecuritiesCompanyCode", "Code"), ("PriceEarningRatio", "PEratio")),
     ):
         try:
+            n = 0
             for row in fetch(url):
                 code, pe = pick(row, *code_k), num(pick(row, *pe_k))
                 if code and pe and str(code).strip() in quotes:
                     quotes[str(code).strip()]["pe"] = pe
+                    n += 1
+            note(key, n > 0, n, None if n else "沒有可用的列")
         except Exception as e:  # noqa: BLE001
-            print(f"[tw] 本益比抓取失敗 {url}: {e}", file=sys.stderr)
+            note(key, False, error=str(e))
+            print(f"[tw] {key} 失敗: {e}", file=sys.stderr)
 
     if len(quotes) < 500:
         print(f"[tw] 只拿到 {len(quotes)} 檔，視為失敗，保留舊資料", file=sys.stderr)
@@ -140,14 +181,17 @@ def update_global() -> bool:
                 "currency": info.get("currency"),
                 "pe": num(info.get("trailingPE")),
                 "fpe": num(info.get("forwardPE")),
-                "asof": date.today().isoformat(),
+                "asof": (datetime.fromtimestamp(info["regularMarketTime"], TPE).date().isoformat()
+                         if info.get("regularMarketTime") else date.today().isoformat()),
             }
             ok += 1
         except Exception as e:  # noqa: BLE001
+            STATUS.setdefault("global_failed", {"ok": False, "symbols": []})["symbols"].append(f"{sym}: {str(e)[:80]}")
             print(f"[global] {sym} 失敗，沿用舊資料: {e}", file=sys.stderr)
             if sym in old:
                 out[sym] = old[sym]
     write("global_quotes.json", {"updated": now_iso(), "source": "yfinance", "quotes": out})
+    note("yfinance", ok > 0, ok)
     print(f"[global] 更新 {ok}/{len(symbols)} 檔")
     return ok > 0
 
@@ -160,4 +204,6 @@ if __name__ == "__main__":
         except Exception as e:  # noqa: BLE001
             print(f"{step.__name__} 發生錯誤: {e}", file=sys.stderr)
             results.append(False)
+    (DATA / "update_status.json").write_text(
+        json.dumps({"updated": now_iso(), "sources": STATUS}, ensure_ascii=False, indent=1), encoding="utf-8")
     sys.exit(0 if any(results) else 1)
