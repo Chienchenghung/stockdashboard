@@ -1,21 +1,26 @@
 {
- "updated": "2026-10-27T22:31:06+08:00",
+ "updated": "2026-10-28T23:06:08+08:00",
  "sources": {
   "twse_day": {
    "ok": true,
-   "count": 1368
+   "count": 1375
   },
   "tpex_day": {
+   "ok": false,
+   "count": 0,
+   "error": "Response ended prematurely"
+  },
+  "tpex_day_fallback": {
    "ok": true,
-   "count": 5720
+   "count": 991
   },
   "twse_pe": {
    "ok": true,
-   "count": 867
+   "count": 874
   },
   "tpex_pe": {
    "ok": true,
-   "count": 663
+   "count": 660
   },
   "yfinance": {
    "ok": true,
