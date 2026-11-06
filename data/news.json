@@ -1,31 +1,31 @@
 {
   "_說明": "由「每日新聞」排程自動維護，格式見 agent/daily-news.md。",
-  "updated": "2026-11-05T17:40:00+08:00",
+  "updated": "2026-11-06T17:16:05+08:00",
   "market": {
-    "date": "2026-11-05",
-    "headline": "加權指數收 41,574.72 點，下跌 1,374.19 點（3.20%），跌破 42,000 點、為 7 月底以來低點；美國期中選舉結果引發市場對 AI 資料中心建置前景的疑慮，費半大跌拖累電子股，外資連續第 3 天賣超逾千億元。",
+    "date": "2026-11-06",
+    "headline": "加權指數收 39,701.64 點，下跌 1,873.08 點（4.51%），失守 4 萬點，為史上第 4 大收盤跌點；美國期中選舉後市場憂心 AI 資料中心監管趨嚴，美股晶片股崩跌，台股盤中一度重挫 3,737 點創紀錄，行政院表態穩定股市後跌幅收斂。",
     "points": [
-      "前一晚美股道瓊大漲近 1,570 點，但費城半導體指數下跌約 3%，AI 族群承壓；台股開低走低，成交值約 9,260 億元，櫃買指數重挫 6.41%，跌幅約為加權指數的兩倍。",
-      "三大法人合計賣超約 1,235 億元：外資賣超約 1,025 億元，投信逆勢買超約 225 億元，自營商賣超約 435 億元；新台幣續貶，逼近 33 元兌 1 美元。",
-      "電子零組件、玻璃陶瓷、PCB 與電子材料族群跌幅最深，台玻、南亞、信驊等跌停；紡織纖維、居家生活與運動休閒類股逆勢小漲。",
-      "追蹤公司中，台積電跌 0.88% 收 2,240 元相對抗跌；聯發科跌 6.86% 收 3,460 元、台達電跌 7.38% 收 1,130 元、日月光投控跌 8.77%；台光電、欣興、國巨三檔跌停；鴻海跌 2.08% 收 235 元，廣達收 300 元。"
+      "前一晚美股全面重挫：道瓊跌 3.44%、那斯達克跌 5.52%，費城半導體指數暴跌 12.25%，為 2020 年 3 月以來最大單日跌幅；市場擔心民主黨在期中選舉大勝後收緊 AI 與資料中心建設，韓股盤中觸發熔斷、日股同步重挫。",
+      "台股開低後盤中最低 37,837 點，單日盤中跌點創史上最大，自 10 月 6 日高點回落逾兩成；行政院長指示金管會機動穩定股市後買盤進場，成交值約 1.25 兆元，電子類股跌 4.93%、金融類股跌 3.16%，櫃買指數跌 5.43%。",
+      "三大法人合計賣超約 1,140 億元：外資賣超約 912 億元、連續第 7 天賣超，自營商賣超約 495 億元，投信逆勢買超約 267 億元、連續第 19 天買超。",
+      "追蹤公司中，台積電開盤跌停後收 2,135 元、跌 105 元（4.69%），為史上第 2 大收盤跌幅；聯發科跌 2.02% 收 3,390 元相對抗跌；鴻海跌 4.47%、台達電跌 6.64%、日月光投控跌 7.87%、聯電跌 6.5%、國巨跌 7.54%。"
     ],
     "sources": [
       [
-        "MoneyDJ：《台股盤後》重挫1374點失守42K，外資續賣千億（2026-11-05）",
-        "https://www.moneydj.com/kmdj/news/newsviewer.aspx?a=6db1b285-87df-4f62-b2d2-0a5cabf54788"
+        "中央社：台股崩跌寫多項紀錄　台積電收跌105元創史上第2大（2026-11-06）",
+        "https://www.cna.com.tw/news/afe/202611060172.aspx"
       ],
       [
-        "中央社：【盤後焦點】台股續挫1374點摜破42000點 為第13大收盤跌點（2026-11-05）",
-        "https://tw.stock.yahoo.com/news/%E7%9B%A4%E5%BE%8C%E7%84%A6%E9%BB%9E-%E5%8F%B0%E8%82%A1%E7%BA%8C%E6%8C%AB1374%E9%BB%9E%E6%91%9C%E7%A0%B442000%E9%BB%9E-%E7%82%BA%E7%AC%AC13%E5%A4%A7%E6%94%B6%E7%9B%A4%E8%B7%8C%E9%BB%9E-065626499.html"
+        "鉅亨網：恐慌殺盤台股失守4萬點 外資續砍911億、三大法人賣超1140億元（2026-11-06）",
+        "https://news.cnyes.com/news/id/6650107"
       ],
       [
-        "三立新聞（鏡週刊轉載）：收盤／台股崩1374點 AI股慘綠櫃買殺6.4%（2026-11-05）",
-        "https://www.mirrormedia.mg/external/setn_1933734"
+        "鉅亨網：〈美股盤後〉AI股大逃殺！道瓊狂瀉1800點 費半血崩逾12%（2026-11-06）",
+        "https://news.cnyes.com/news/id/6648369"
       ],
       [
-        "ETtoday：萬元股王收跌停！台股單日殺1374點 台積電跌20元至2240（2026-11-05）",
-        "https://finance.ettoday.net/news/3266920"
+        "風傳媒：三大法人》狂砍1140億元！外資連7賣、投信逆勢連19買（2026-11-06）",
+        "https://www.storm.mg/article/11179133"
       ]
     ]
   },
@@ -42,6 +42,15 @@
       }
     ],
     "2454": [
+      {
+        "date": "2026-11-06",
+        "title": "聯發科延攬前英特爾封測主管",
+        "summary": "前英特爾封裝測試與晶圓代工主管 Navid Shahriari 將於 11/9 出任聯發科資深副總，負責先進製程、封測與良率；報導指聯發科同時支援台積電 CoWoS 與英特爾 EMIB 封裝，部分雲端 ASIC 專案與英特爾合作，有助 AI ASIC 放量時分散封裝產能風險。",
+        "impact": "positive",
+        "thesis": true,
+        "source": "TrendForce",
+        "url": "https://trendforce.com/news/2026/11/06/news-mediatek-reportedly-taps-intel-packaging-veteran-after-tsmc-hire-advances-dual-cowos-emib-strategy"
+      },
       {
         "date": "2026-11-03",
         "title": "對手邁威爾換股併購Lumentum",
@@ -86,15 +95,6 @@
         "thesis": true,
         "source": "經濟日報",
         "url": "https://money.udn.com/money/story/5612/9847394"
-      },
-      {
-        "date": "2026-10-29",
-        "title": "Google稱明年資本支出將大幅增加",
-        "summary": "Alphabet 第三季維持今年資本支出 1,950 億至 2,050 億美元的目標，並表示 2027 年將明顯增加；TPU 系統銷售是雲端營收倍增的重要來源。聯發科負責 Google TPU 專案，客戶擴大 AI 投資有利 ASIC 主軸，但 Alphabet 獲利不如預期、股價盤後大跌。",
-        "impact": "positive",
-        "thesis": true,
-        "source": "Investing.com",
-        "url": "https://www.investing.com/news/transcripts/earnings-call-transcript-alphabet-q3-2026-profit-miss-sparks-10-afterhours-drop-93CH-4981037"
       }
     ],
     "2317": [
@@ -171,27 +171,18 @@
         "thesis": true,
         "source": "東森財經新聞",
         "url": "https://fnc.ebc.net.tw/fncnews/headline/221757"
-      },
-      {
-        "date": "2026-10-29",
-        "title": "台達電法說：Q4起調價、庫存可望去化",
-        "summary": "董事長鄭平表示第三季庫存增加是長短料錯配與客戶工程延後所致，屬短期現象，第四季可望逐步消化；今年原物料成本上升約 2%，公司正和客戶協商調價，部分第四季生效。管理層也提醒 AI 資料中心缺電恐拖慢建置速度，但不會中斷擴建。",
-        "impact": "neutral",
-        "thesis": true,
-        "source": "壹蘋新聞網",
-        "url": "https://news.nextapple.com/finance/20261029/5A17B250C6748F580ED2FBC9FE261205"
-      },
-      {
-        "date": "2026-10-29",
-        "title": "台達電Q3營收創高 毛利率受存貨沖銷拖累",
-        "summary": "台達電第三季營收 1,971 億元創單季新高、年增 31%，EPS 9.04 元，前三季 EPS 26.64 元；但毛利率降至 34.08%，季減 1.56 個百分點，主因存貨跌價損失。AI 資料中心電源與散熱需求仍支撐營收，獲利率則短暫承壓。",
-        "impact": "neutral",
-        "thesis": false,
-        "source": "工商時報",
-        "url": "https://www.ctee.com.tw/news/20261029700635-430201"
       }
     ],
     "3037": [
+      {
+        "date": "2026-11-06",
+        "title": "欣興10月營收年增近七成",
+        "summary": "欣興 10 月營收約 189.9 億元，年增 67.6%，前 10 月累計年增約 41%；公司說明成長來自產能增加與客戶需求提升，與 AI 載板供不應求、新產能開出的主軸一致。",
+        "impact": "positive",
+        "thesis": false,
+        "source": "MoneyDJ",
+        "url": "https://www.moneydj.com/kmdj/news/newsviewer.aspx?a=adc15ffd-5166-40e5-9a24-17194ccc0522"
+      },
       {
         "date": "2026-11-03",
         "title": "同業南電10月營收創新高",
@@ -220,15 +211,6 @@
         "thesis": true,
         "source": "經濟日報",
         "url": "https://udn.com/news/story/7240/9845824"
-      },
-      {
-        "date": "2026-10-29",
-        "title": "日月光Q3獲利270億元 創19季新高",
-        "summary": "日月光投控第三季營收 2,442 億元、年增 45%，毛利率 22.1%、季增 1.1 個百分點，稅後純益約 270 億元、年增 148%，EPS 5.84 元；封測事業毛利率達 30.6%。先進封裝與測試需求帶動獲利率提升，呼應 LEAP 成長主軸。",
-        "impact": "positive",
-        "thesis": true,
-        "source": "經濟日報",
-        "url": "https://udn.com/news/story/7252/9844939"
       }
     ],
     "2383": [
@@ -248,18 +230,18 @@
         "thesis": false,
         "source": "今周刊",
         "url": "https://www.businesstoday.com.tw/article/category/183008/post/202611020016/"
-      },
-      {
-        "date": "2026-10-29",
-        "title": "美系外資上修台光電目標價至11700元",
-        "summary": "美系外資指出高階 CCL 本季持續調漲，將台光電目標價由 10,200 元上修到 11,700 元；台光電前一天公布第三季每股賺 40 元以上。高階低損耗 CCL 漲價直接支撐 AI 材料的成長主軸。",
-        "impact": "positive",
-        "thesis": true,
-        "source": "自由財經",
-        "url": "https://ec.ltn.com.tw/article/breakingnews/5622214"
       }
     ],
     "2303": [
+      {
+        "date": "2026-11-05",
+        "title": "聯電10月營收252億元 寫歷史次高",
+        "summary": "聯電 10 月營收月減 0.6%、年增 18.3%，僅次於 9 月紀錄，前 10 月累計年增約 16%；公司預期第四季出貨量小幅成長、美元報價持平，並規劃明年第一季起調升產品組合均價約一成。",
+        "impact": "positive",
+        "thesis": false,
+        "source": "工商時報",
+        "url": "https://www.ctee.com.tw/news/20261106700176-439901"
+      },
       {
         "date": "2026-11-02",
         "title": "傳聯電獲矽光子晶圓大單",
@@ -277,27 +259,18 @@
         "thesis": true,
         "source": "經濟日報",
         "url": "https://udn.com/news/story/12806/9846273"
-      },
-      {
-        "date": "2026-10-29",
-        "title": "聯電Q3純益季減六成、Q4報價持平",
-        "summary": "聯電第三季營收 742 億元、季增 8%，營業利益季增約 25%，但業外收益減少使稅後純益季減 61%，EPS 1.32 元；第四季預估晶圓出貨小幅成長、平均售價持平、毛利率與上季相近。漲價能否延續是成長主軸的關鍵，短期仍待觀察。",
-        "impact": "neutral",
-        "thesis": true,
-        "source": "工商時報",
-        "url": "https://www.ctee.com.tw/news/20261029700774-430201"
-      },
-      {
-        "date": "2026-10-29",
-        "title": "多家外資下修聯電EPS與目標價",
-        "summary": "法說後瑞銀將目標價由 230 元降到 200 元、花旗下修 2027 至 2028 年 EPS 預估約一成；摩根大通指出公司暗示明年平均售價漲幅約 10%，低於市場原先預期，維持中立。漲價幅度低於預期，削弱晶圓漲價這條主軸的力道。",
-        "impact": "negative",
-        "thesis": true,
-        "source": "工商時報",
-        "url": "https://www.ctee.com.tw/news/20261029700848-430201"
       }
     ],
     "2379": [
+      {
+        "date": "2026-11-06",
+        "title": "瑞昱10月營收年增32%",
+        "summary": "瑞昱 10 月營收約 119.7 億元，月減 3.3%、年增 32.1%，前 10 月累計年增約 17%，維持在第三季高檔附近，網通晶片需求延續。",
+        "impact": "neutral",
+        "thesis": false,
+        "source": "TechNews 科技新報",
+        "url": "https://finance.technews.tw/2026/11/06/rt-2379-202610-financial-report"
+      },
       {
         "date": "2026-10-30",
         "title": "美系外資調升瑞昱目標價至900元",
@@ -306,24 +279,6 @@
         "thesis": true,
         "source": "中時新聞網",
         "url": "https://www.chinatimes.com/realtimenews/20261030001682-260410"
-      },
-      {
-        "date": "2026-10-29",
-        "title": "瑞昱Q3每股賺8.05元 Wi-Fi 8明年下半年量產",
-        "summary": "瑞昱第三季營收 377 億元、年增 28%，稅後純益年增 20%，EPS 8.05 元；Wi-Fi 8 預計 2027 年下半年開始量產，網通與車用乙太網路出貨穩健。PC 與遊戲機需求受記憶體漲價影響轉弱，網通升級主軸則持續推進。",
-        "impact": "positive",
-        "thesis": true,
-        "source": "中時新聞網",
-        "url": "https://www.chinatimes.com/realtimenews/20261029003658-260410"
-      },
-      {
-        "date": "2026-10-29",
-        "title": "瑞昱拓展AI伺服器高速互連產品",
-        "summary": "瑞昱在法說會表示，正從伺服器管理與 SSD 控制器擴展到 SerDes、PCIe retimer 與光通訊控制器等高速互連產品，100G 光通訊 PHY 正在客戶驗證、預計 2027 年放量；目前 HPC 與邊緣 AI 營收占比為高個位數，目標 2030 年超過三成。",
-        "impact": "positive",
-        "thesis": true,
-        "source": "Investing.com",
-        "url": "https://in.investing.com/news/stock-market-news/earnings-call-transcript-realtek-q3-2026-revenue-rises-279-as-networking-holds-up-93CH-5662824"
       }
     ],
     "2327": [
@@ -335,24 +290,6 @@
         "thesis": true,
         "source": "中時新聞網",
         "url": "https://www.chinatimes.com/realtimenews/20261030001955-260410"
-      },
-      {
-        "date": "2026-10-29",
-        "title": "國巨看Q4淡季不淡 鉭電容與MLCC擴產",
-        "summary": "公司預估第四季營收與毛利率、營益率都小幅季增，稼動率逾 95%；鉭電容與 MLCC 產能將擴充約 10% 至 15%，明年第二季起陸續開出，以因應 AI 相關訂單。",
-        "impact": "positive",
-        "thesis": false,
-        "source": "中時新聞網",
-        "url": "https://www.chinatimes.com/realtimenews/20261029003991-260410"
-      },
-      {
-        "date": "2026-10-29",
-        "title": "國巨Q3營收創高、EPS年增近九成",
-        "summary": "國巨第三季營收 495 億元創新高、年增近五成，毛利率升至 41%，EPS 5.83 元、年增 88%，前三季 EPS 14.32 元；公司指出 AI 應用需求強勁，標準品與特殊品同步成長，客戶庫存健康，符合 AI 伺服器帶動高階被動元件的主軸。",
-        "impact": "positive",
-        "thesis": true,
-        "source": "壹蘋新聞網",
-        "url": "https://news.nextapple.com/finance/20261029/C3527F8B22B14EB4F37CAFA6675B9843"
       }
     ],
     "2891": [
@@ -375,6 +312,17 @@
         "thesis": false,
         "source": "經濟日報",
         "url": "https://udn.com/news/story/7239/9852967"
+      }
+    ],
+    "2345": [
+      {
+        "date": "2026-11-06",
+        "title": "智邦10月營收446.6億元再創新高",
+        "summary": "智邦 10 月營收月增 10.6%、年增約 91%，前 10 月累計年增約 66%；先前遞延的客戶出貨恢復，反映雲端業者資料中心交換器需求仍強。公司另規劃現金增資發行至多 1 萬張新股。",
+        "impact": "positive",
+        "thesis": false,
+        "source": "鉅亨網",
+        "url": "https://news.cnyes.com/news/id/6650228"
       }
     ]
   }
