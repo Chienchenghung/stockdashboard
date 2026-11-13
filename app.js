@@ -14,7 +14,10 @@
   const md = (s) => (s || '').slice(5).replace('-', '/');
   const median = (a) => { const s = [...a].sort((x, y) => x - y), m = s.length >> 1; return s.length % 2 ? s[m] : (s[m - 1] + s[m]) / 2; };
   const LIMIT = 0.4;
-  const SAMPLE = [{ t: '006208', s: 30000 }, { t: '2454', s: 2000 }, { t: '2330', s: 1000 }];
+  const SAMPLE = [
+    { t: '2308', s: 1000 }, { t: '2454', s: 1000 },
+    { t: '00631L', s: 120000 }, { t: '009816', s: 100000 }, { t: '006208', s: 4000 },
+  ];
 
   // ---------- 載入資料 ----------
   let TW, GL, CO, ETF, NEWS = { market: null, companies: {} }, COV = { order: [] };
